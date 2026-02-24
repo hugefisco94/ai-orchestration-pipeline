@@ -1,0 +1,17 @@
+{
+  "$schema": "https://raw.githubusercontent.com/anthropics/claude-code/main/settings.schema.json",
+  "$comment": "Add this to ~/.claude/settings.json under mcpServers",
+  "mcpServers": {
+    "swarm-router": {
+      "command": "python",
+      "args": ["-m", "swarm_router.mcp_bridge"],
+      "env": {
+        "SWARM_PRIMARY_URL": "http://localhost:4000",
+        "SWARM_PRIMARY_KEY": "sk-litellm-master-key",
+        "SWARM_SECONDARY_URL": "http://localhost:8100",
+        "SWARM_SECONDARY_KEY": "sk-elice-litellm-key",
+        "SWARM_KNOWLEDGE_URL": "http://localhost:8080/api/v1"
+      }
+    }
+  }
+}

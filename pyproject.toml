@@ -1,0 +1,50 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "swarm-router"
+version = "0.1.0"
+description = "Multi-model AI orchestration pipeline with auto-routing, parallel consensus, and knowledge-enriched workflows"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+authors = [
+    { name = "SwarmRouter Team" },
+]
+keywords = [
+    "ai", "llm", "orchestration", "multi-model", "consensus",
+    "swarm", "pipeline", "mcp", "openrouter", "litellm",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "requests>=2.31.0",
+]
+
+[project.optional-dependencies]
+server = ["flask>=3.0.0"]
+all = ["flask>=3.0.0"]
+
+[project.scripts]
+swarm-router = "swarm_router.cli:main"
+swarm-health = "swarm_router.cli:health"
+
+[project.urls]
+Homepage = "https://github.com/Swn94/swarm-router"
+Repository = "https://github.com/Swn94/swarm-router"
+Issues = "https://github.com/Swn94/swarm-router/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/swarm_router"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/", "README.md", "LICENSE"]

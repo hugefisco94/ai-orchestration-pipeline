@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  swarm-router:
+    build: .
+    ports:
+      - "9000:9000"
+    environment:
+      - SWARM_PRIMARY_URL=http://litellm:4000
+      - SWARM_PRIMARY_KEY=${LITELLM_MASTER_KEY:-sk-default}
+      - SWARM_KNOWLEDGE_URL=${SWARM_KNOWLEDGE_URL:-}
+      - SWARM_TIMEOUT_FAST=30
+      - SWARM_TIMEOUT_POWER=60
+      - SWARM_TIMEOUT_DEEP=120
+    depends_on:
+      litellm:
+        condition: service_healthy
+    restart: unless-stopped
+
+  litellm:
+    image: ghcr.io/berriai/litellm:main-latest
+    ports:
+      - "4000:4000"
+    environment:
+      - LITELLM_MASTER_KEY=${LITELLM_MASTER_KEY:-sk-default}
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY:-}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+    volumes:
+      - ./litellm_config.yaml:/app/config.yaml:ro
+    command: ["--config", "/app/config.yaml", "--port", "4000"]
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:4000/health/liveliness"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped

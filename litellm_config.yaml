@@ -1,0 +1,55 @@
+# LiteLLM Proxy Configuration
+# Customize models based on your API keys and preferences.
+# Docs: https://docs.litellm.ai/docs/proxy/configs
+
+model_list:
+  # --- T1 Fast (2-10s) ---
+  - model_name: gemini-flash
+    litellm_params:
+      model: openrouter/google/gemini-2.5-flash
+      api_key: os.environ/OPENROUTER_API_KEY
+
+  - model_name: qwen3-coder
+    litellm_params:
+      model: openrouter/qwen/qwen3-coder
+      api_key: os.environ/OPENROUTER_API_KEY
+
+  - model_name: mistral-small
+    litellm_params:
+      model: openrouter/mistralai/mistral-small-3.2-24b-instruct
+      api_key: os.environ/OPENROUTER_API_KEY
+
+  # --- T2 Power (5-15s) ---
+  - model_name: deepseek-v3
+    litellm_params:
+      model: openrouter/deepseek/deepseek-chat
+      api_key: os.environ/OPENROUTER_API_KEY
+
+  - model_name: gemini-pro
+    litellm_params:
+      model: openrouter/google/gemini-3-pro-preview
+      api_key: os.environ/OPENROUTER_API_KEY
+
+  - model_name: claude-haiku
+    litellm_params:
+      model: openrouter/anthropic/claude-haiku-4.5
+      api_key: os.environ/OPENROUTER_API_KEY
+
+  # --- T3 Deep (15-60s) ---
+  - model_name: deepseek-r1
+    litellm_params:
+      model: openrouter/deepseek/deepseek-r1
+      api_key: os.environ/OPENROUTER_API_KEY
+
+  - model_name: qwen3-235b
+    litellm_params:
+      model: openrouter/qwen/qwen3-235b-a22b
+      api_key: os.environ/OPENROUTER_API_KEY
+
+litellm_settings:
+  drop_params: true
+  num_retries: 2
+  request_timeout: 120
+
+general_settings:
+  master_key: os.environ/LITELLM_MASTER_KEY
