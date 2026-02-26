@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_hugefisco94_ai_orchestration_pipeline_1772071316984-push-trigger-input-set
+  identifier: Build_hugefisco94_ai_orchestration_pipeline_1772071316984pushtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: default_project
+  pipeline:
+    identifier: Build_hugefisco94_ai_orchestration_pipeline_1772071316984
+    properties:
+      ci:
+        codebase:
+          build:
+            type: branch
+            spec:
+              branch: <+trigger.branch>
