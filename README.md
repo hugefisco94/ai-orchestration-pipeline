@@ -1,3 +1,5 @@
+> **DEPRECATED** — This repository has been consolidated into [mdo-nexus-ooda](https://github.com/hugefisco94/mdo-nexus-ooda). No further updates here.
+
 <div align="center">
 
 # 🌀 SwarmRouter
